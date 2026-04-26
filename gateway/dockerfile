@@ -1,0 +1,16 @@
+FROM node:18
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+
+RUN npm install -g ts-node typescript
+
+# change per service:
+# auth: 5001, product: 5002, ai: 5003, gateway: 5000
+EXPOSE 5000
+
+CMD ["npm", "run", "dev"]
